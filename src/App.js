@@ -3,20 +3,32 @@ import './App.css';
 import base from './base'
 
 class App extends Component{
-  
+
   state = {
-    persons: {}
+    value: '',
+    persons: []
   }
   
   componentDidMount() {
-    base.syncState('/', {
+    base.syncState('/persons', {
       context: this,
-      state: 'challenge-tech'
-    })
-    
+      state: 'persons'
+    }) 
+  }
+  handleChange = (e) => {
+    var value = e.target.value
+    console.log(value);
+  }
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.setState( {
+      'persons': this.value
+    })   
   }
 
   render() {
+  // map on persons to create a div for each person.
+    const persons = this.state.persons.map((person, i) => <div key={i} className="member-item">{person.nom}</div>)
     console.log(this.state);
     return (
       <div className="App">
@@ -31,17 +43,15 @@ class App extends Component{
         <main> 
           {/* New member form */}
           <h2>Ajouter un(e) Argonaute</h2>
-          <form className="new-member-form">
+          <form onSubmit={this.handleSubmit} className="new-member-form">
             <label for="name">Nom de l&apos;Argonaute</label>
-            <input id="name" name="name" type="text" placeholder="Charalampos" />
+            <input id="name" name="name" type="text" value={this.value} onChange={this.handleChange} placeholder="Charalampos" />
             <button type="submit">Envoyer</button>
           </form>
         {/* Member list */}
           <h2>Membres de l'équipage</h2>
           <section className="member-list">
-            <div className="member-item">Eleftheria</div>
-            <div className="member-item">Gennadios</div>
-            <div className="member-item">Lysimachos</div>
+            {persons}
           </section>
         </main>
         <footer>
