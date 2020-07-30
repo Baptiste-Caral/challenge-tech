@@ -1,14 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
+.App {
+  min-height:100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+}
 body {
+  
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
 
 main {
   max-width: 960px;
-  margin: 0 auto;
-  
+  margin: 0 auto; 
 }
 
 header {
