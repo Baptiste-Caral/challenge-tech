@@ -4,6 +4,9 @@ import base from './base'
 
 class App extends Component{
 
+// newPerson = form value
+  newPerson = null
+
   state = {
     value: '',
     persons: []
@@ -15,20 +18,28 @@ class App extends Component{
       state: 'persons'
     }) 
   }
+  
   handleChange = (e) => {
-    var value = e.target.value
-    console.log(value);
+    this.newPerson = e.target.value
+    console.log(this.newPerson);
   }
+  
   handleSubmit = (e) => {
     e.preventDefault()
     this.setState( {
-      'persons': this.value
-    })   
+      
+      persons: [
+        ...this.state.persons,
+       {nom: this.newPerson} 
+      ]
+    }) 
+    this.newPerson = '' 
   }
 
   render() {
+
   // map on persons to create a div for each person.
-    const persons = this.state.persons.map((person, i) => <div key={i} className="member-item">{person.nom}</div>)
+    const personsList = this.state.persons.map((person, i) => <div key={i} className="member-item">{person.nom}</div>)
     console.log(this.state);
     return (
       <div className="App">
@@ -45,13 +56,13 @@ class App extends Component{
           <h2>Ajouter un(e) Argonaute</h2>
           <form onSubmit={this.handleSubmit} className="new-member-form">
             <label for="name">Nom de l&apos;Argonaute</label>
-            <input id="name" name="name" type="text" value={this.value} onChange={this.handleChange} placeholder="Charalampos" />
+            <input id="name" name="name" type="text" value={this.newPerson} onChange={this.handleChange} placeholder="Charalampos" />
             <button type="submit">Envoyer</button>
           </form>
         {/* Member list */}
           <h2>Membres de l'équipage</h2>
           <section className="member-list">
-            {persons}
+            {personsList}
           </section>
         </main>
         <footer>

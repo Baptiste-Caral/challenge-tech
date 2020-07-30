@@ -8,6 +8,7 @@ body {
 main {
   max-width: 960px;
   margin: 0 auto;
+  
 }
 
 header {
@@ -52,4 +53,5 @@ footer {
   color: #fff;
   background: #f76c6c;
   padding: 0.25em 0;
+  
 }
