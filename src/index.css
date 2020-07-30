@@ -25,10 +25,6 @@ header h1 {
   font-size: 2.5em;
 }
 
-footer {
-  background: 
-}
-
 h1, h2 {
   text-align: center;
 }
@@ -42,9 +38,17 @@ label {
   margin: 2em 0 4em 0;
   text-align: center;
 }
-
+.member-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  
+}
 .member-item {
   padding: 0.25em 0;
+  width: 33.3%;
+  
+  
 }
 
 footer {
@@ -53,5 +57,5 @@ footer {
   color: #fff;
   background: #f76c6c;
   padding: 0.25em 0;
-  
+
 }

@@ -4,10 +4,9 @@ import base from './base'
 
 class App extends Component{
 
-// newPerson = form value
-  newPerson = null
 
   state = {
+    
     value: '',
     persons: []
   }
@@ -20,20 +19,24 @@ class App extends Component{
   }
   
   handleChange = (e) => {
-    this.newPerson = e.target.value
-    console.log(this.newPerson);
+    this.setState( {
+      value: e.target.value
+    })
+     
+    console.log(this.state.value);
   }
   
   handleSubmit = (e) => {
     e.preventDefault()
     this.setState( {
-      
+      value: '',
       persons: [
         ...this.state.persons,
-       {nom: this.newPerson} 
+       {nom: this.state.value} 
       ]
-    }) 
-    this.newPerson = '' 
+    })
+    
+    
   }
 
   render() {
@@ -56,7 +59,7 @@ class App extends Component{
           <h2>Ajouter un(e) Argonaute</h2>
           <form onSubmit={this.handleSubmit} className="new-member-form">
             <label for="name">Nom de l&apos;Argonaute</label>
-            <input id="name" name="name" type="text" value={this.newPerson} onChange={this.handleChange} placeholder="Charalampos" />
+            <input id="name" name="name" type="text" value={this.state.value} onChange={this.handleChange} placeholder="Charalampos" />
             <button type="submit">Envoyer</button>
           </form>
         {/* Member list */}
