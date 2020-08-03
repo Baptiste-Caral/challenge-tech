@@ -6,26 +6,25 @@ class App extends Component{
 
 
   state = {
-    
+
     value: '',
     persons: []
   }
-  
+  // Synchronise State with Firebase
   componentDidMount() {
     base.syncState('/persons', {
       context: this,
       state: 'persons'
     }) 
   }
-  
+  // Controled input (form)
   handleChange = (e) => {
     this.setState( {
       value: e.target.value
     })
-     
     console.log(this.state.value);
   }
-  
+  // add input value in state
   handleSubmit = (e) => {
     e.preventDefault()
     this.setState( {
@@ -35,8 +34,6 @@ class App extends Component{
        {nom: this.state.value} 
       ]
     })
-    
-    
   }
 
   render() {
@@ -76,5 +73,4 @@ class App extends Component{
     }
  ;
 }
-
 export default App;
